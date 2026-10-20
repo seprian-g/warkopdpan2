@@ -1,0 +1,793 @@
+<title>Warkop D'PAN Bekasi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=JetBrains+Mono:wght@500;700&family=Knewave&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+tailwind.config = {
+  theme: { extend: {
+    fontFamily: {
+      kn: ['Knewave', '"Arial Black"', 'Impact', 'sans-serif'],
+      hand: ['"Caveat Brush"', '"Comic Sans MS"', 'cursive'],
+      sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+      mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
+    },
+    colors: { cream: '#FFF6DE', cream2: '#FFEBB8', sun: '#FFC629', ink: '#0F172A', paper: '#FBF3DF', board: '#E8431F' }
+  } }
+};
+</script>
+<style>
+/* Layout: poster warkop. Pita kuning, stiker bergaris tebal, dan blok slate gelap bergantian. Satu tampilan yang disengaja, tanpa mode gelap sistem. */
+:root{
+  --cream:#FFF6DE; --cream2:#FFEBB8; --sun:#FFC629; --amber:#F59E0B; --amber-deep:#D97706;
+  --ink:#0F172A; --slate:#1E293B; --paper:#FBF3DF; --muted:#5F5642; --lime:#84CC16; --board:#E8431F;
+  --f-kn:'Knewave','Arial Black',Impact,sans-serif; --f-hand:'Caveat Brush','Comic Sans MS',cursive;
+  --f-body:'Plus Jakarta Sans',system-ui,sans-serif; --f-mono:'JetBrains Mono',ui-monospace,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;margin:0;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--cream)}
+[x-cloak]{display:none!important}
+h1,h2,h3{text-wrap:balance;margin:0}
+.gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media(min-width:640px){.gutter{padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.dark-band a:focus-visible,.dark-band button:focus-visible,.dark-band input:focus-visible,.dark-band select:focus-visible,.modal a:focus-visible,.modal button:focus-visible,.modal input:focus-visible{outline-color:var(--sun)}
+.ic{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* tombol stiker */
+.dark-band,.modal{--sh:var(--sun)}
+.btn{--sh:var(--ink);display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font-weight:800;font-size:.95rem;line-height:1.2;text-align:center;padding:.8rem 1.35rem;border-radius:999px;border:2.5px solid var(--ink);box-shadow:3px 4px 0 var(--sh);cursor:pointer;transition:transform .15s,box-shadow .15s;color:var(--ink)}
+.dark-band .btn,.modal .btn{--sh:var(--sun)}
+.btn:hover{transform:translate(-1px,-2px);box-shadow:5px 7px 0 var(--sh)}
+.btn:active{transform:translate(2px,3px);box-shadow:1px 1px 0 var(--sh)}
+.btn-sun{background:var(--sun)}
+.btn-white{background:#fff}
+.btn-wa{background:#4ADE80}
+.btn-sm{padding:.5rem 1rem;font-size:.85rem}
+
+/* judul */
+.tag-hand{font-family:var(--f-hand);font-size:1.5rem;line-height:1.1;color:var(--ink)}
+.judul{font-family:var(--f-hand);font-weight:400;font-size:clamp(2.2rem,6vw,3.4rem);line-height:1.25;display:inline-block;padding:6px 22px 10px;background:var(--sun);color:var(--ink);transform:rotate(-2.5deg);border-radius:16px 44px 14px 40px/42px 14px 46px 16px;text-wrap:balance}
+.judul-dark{background:none;color:#fff;padding:0 0 12px;border-bottom:6px solid var(--sun);border-radius:0;transform:rotate(-1deg)}
+.lead{max-width:40rem;color:var(--muted)}
+.dark-band .lead{color:#CBD5E1}
+
+/* hero */
+.halftone{background-image:radial-gradient(rgba(15,23,42,.1) 1.3px,transparent 1.4px);background-size:22px 22px}
+.hero{background:var(--ink);aspect-ratio:4/3;display:flex;align-items:flex-end;border:3px solid var(--ink);border-radius:28px;box-shadow:8px 8px 0 var(--ink)}
+.hero-body{width:100%;padding:clamp(1.1rem,3.2vw,2.6rem)}
+.hero:not(.x){}
+@media (max-width:820px){.hero{aspect-ratio:auto;min-height:0}.hero-body{padding-top:clamp(9rem,48vw,15rem)}}
+.tt-sec{background:var(--slate);color:#fff;border-top:3px solid var(--ink);background-image:radial-gradient(rgba(255,198,41,.12) 1.4px,transparent 1.4px);background-size:22px 22px}
+.tt-profile{width:100%;max-width:780px;display:flex;justify-content:center}
+.tt-profile .tiktok-embed{margin:0 auto!important}
+.tt-profile section a{color:#fff;font-weight:800}
+.hero-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(15,23,42,.92) 0%,rgba(15,23,42,.72) 38%,rgba(15,23,42,.12) 68%,transparent 100%)}
+.hero h1{color:#fff;text-shadow:0 3px 0 var(--ink),0 0 22px rgba(0,0,0,.55)}
+.hero .mark{color:var(--ink);text-shadow:none;box-shadow:3px 4px 0 var(--ink);background:var(--sun);border-radius:.3em;transform:rotate(-1.5deg)}
+.hero .pill-dark{background:rgba(15,23,42,.88);box-shadow:0 0 0 2px var(--sun)}
+.hero-sub{color:#fff;text-shadow:0 1px 0 rgba(15,23,42,.7),0 2px 12px rgba(0,0,0,.6)}
+@media (prefers-reduced-motion:reduce){.hero-vid{display:none}.hero{background:var(--ink) url(__POSTER__) center/cover}}
+.hero h1{font-family:var(--f-kn);font-weight:400;font-size:clamp(2rem,5vw,4rem);line-height:1.35;letter-spacing:.01em}
+.amp{display:inline-block;padding:0 .1em}
+.mark{display:inline-block;white-space:nowrap;line-height:1.25;padding:.04em .22em .14em;margin:.08em 0;background:linear-gradient(transparent 55%,var(--sun) 55%)}
+.pill-dark{display:inline-block;white-space:nowrap;line-height:1.25;background:var(--ink);color:var(--sun);border-radius:.4em;padding:.06em .3em .2em;margin:.1em 0}
+.chip{display:inline-flex;align-items:center;gap:.45rem;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:.35rem .8rem;font-size:.8rem;font-weight:700}
+.chip svg{width:1rem;height:1rem}
+.frame{border:3px solid var(--ink);border-radius:26px 60px 24px 54px/50px 24px 56px 26px;overflow:hidden;box-shadow:10px 12px 0 var(--sun);background:var(--ink);transform:rotate(1.5deg)}
+.frame img{display:block;width:100%;height:auto}
+.cap{position:absolute;font-family:var(--f-hand);line-height:1.05;text-align:center;color:var(--ink);background:var(--sun);padding:.6rem 1.1rem .75rem;border:2.5px solid var(--ink);border-radius:40px 18px 46px 16px/18px 44px 16px 40px;font-size:clamp(1.1rem,2.4vw,1.5rem)}
+.cap.a{right:-6px;bottom:-22px;transform:rotate(-5deg)}
+.cap.b{left:-10px;top:-20px;transform:rotate(-7deg);background:#fff}
+.spin{animation:spin 20s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* marquee */
+.marquee{overflow:hidden;background:var(--ink);color:var(--sun);border-block:3px solid var(--ink)}
+.marquee-track{display:flex;width:max-content;animation:mq 34s linear infinite}
+.marquee-track>div{display:flex;align-items:center;flex:none}
+.marquee-track span{font-family:var(--f-kn);font-size:1.35rem;white-space:nowrap;padding:.7rem 0}
+.marquee-track i{display:inline-block;width:.9rem;height:.9rem;margin:0 1.4rem;background:var(--sun);transform:rotate(45deg);border-radius:2px;flex:none}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* band kuning (racik mie) */
+.band-sun{background:var(--sun);background-image:radial-gradient(rgba(15,23,42,.12) 1.3px,transparent 1.4px);background-size:22px 22px;border-block:3px solid var(--ink)}
+.card{background:var(--cream);border:3px solid var(--ink);border-radius:1.5rem;box-shadow:7px 8px 0 var(--ink)}
+.card-dark{background:var(--slate);color:#fff;border:3px solid var(--ink);border-radius:1.5rem;box-shadow:7px 8px 0 var(--ink)}
+.step-no{display:inline-grid;place-items:center;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--ink);color:var(--sun);font-family:var(--f-mono);font-size:.85rem;font-weight:700;flex:none}
+.row-h{display:flex;align-items:center;gap:.6rem;font-family:var(--f-hand);font-size:1.55rem;line-height:1}
+.opt{display:block;cursor:pointer;border-radius:.9rem;border:2.5px solid var(--ink);background:#fff;padding:.55rem .85rem;font-weight:700;font-size:.9rem;line-height:1.25;transition:transform .12s,background .12s,box-shadow .12s}
+.opt:hover{transform:translateY(-1px)}
+.opt:has(:checked){background:var(--sun);box-shadow:3px 3px 0 var(--ink)}
+.opt:has(:focus-visible){outline:3px solid var(--ink);outline-offset:3px}
+.opt small{display:block;font-family:var(--f-mono);font-size:.72rem;font-weight:700;opacity:.65}
+.lvl{display:grid;place-items:center;aspect-ratio:1;border-radius:50%;padding:0}
+.led{font-family:var(--f-mono);font-weight:700;color:var(--sun);text-shadow:0 0 12px rgba(255,198,41,.55)}
+.steam path{animation:steam 3.2s ease-in-out infinite;transform-origin:center}
+.steam path:nth-child(2){animation-delay:.9s}.steam path:nth-child(3){animation-delay:1.8s}
+@keyframes steam{0%{opacity:0;transform:translateY(8px)}40%{opacity:.95}100%{opacity:0;transform:translateY(-14px)}}
+
+/* papan menu */
+.board{background:var(--board);color:#fff;border:3px solid var(--ink);border-radius:1.25rem;box-shadow:6px 7px 0 var(--ink);padding:1.25rem 1.25rem 1rem;position:relative}
+.board h3{font-family:var(--f-kn);font-weight:400;font-size:1.9rem;line-height:1;text-transform:uppercase;letter-spacing:.01em}
+.board p.sub{font-size:.8rem;font-weight:600;opacity:.9;margin:.25rem 0 .6rem}
+.board li{display:flex;align-items:baseline;gap:.6rem;padding:.5rem 0;border-top:2px dashed rgba(255,255,255,.45);font-weight:700}
+.board li span:first-child{flex:1;min-width:0}
+.board li small{display:block;font-size:.72rem;font-weight:500;opacity:.9;line-height:1.35}
+.price{flex:none;background:var(--sun);color:var(--ink);font-family:var(--f-mono);font-weight:700;font-size:.85rem;padding:.1rem .6rem;border-radius:999px;border:2px solid var(--ink)}
+
+/* nobar */
+.dark-band{background:var(--ink);color:#fff}
+.slate-card{background:var(--slate);border:2px solid rgba(255,255,255,.14);border-radius:1.25rem}
+.field{width:100%;border-radius:.85rem;border:2.5px solid var(--ink);background:#fff;color:var(--ink);padding:.65rem .9rem;font:inherit;font-size:.95rem}
+.field::placeholder{color:#8B8470}
+.step-btn{display:grid;place-items:center;width:2.2rem;height:2.2rem;border-radius:50%;border:2.5px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer}
+.step-btn:hover:not(:disabled){background:var(--sun)}
+.step-btn:disabled{opacity:.4;cursor:not-allowed}
+
+/* tiket */
+.ticket{position:relative;background:var(--paper);color:var(--ink);border:3px solid var(--ink);border-radius:1.25rem;overflow:hidden}
+.ticket .notch{position:absolute;width:1.4rem;height:1.4rem;border-radius:999px;top:calc(var(--band,3.4rem) - .7rem);border:3px solid var(--ink)}
+.ticket .notch.l{left:-.85rem}.ticket .notch.r{right:-.85rem}
+
+/* galeri */
+.polaroid{background:#fff;padding:.55rem .55rem .35rem;border-radius:.35rem;box-shadow:0 14px 30px -10px rgba(0,0,0,.6);transform:rotate(var(--r,0deg));transition:transform .25s}
+.polaroid:hover{transform:rotate(0deg) scale(1.03);z-index:2}
+.polaroid img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:.2rem}
+.polaroid figcaption{font-family:var(--f-hand);font-size:1.25rem;line-height:1.1;color:var(--ink);padding:.5rem .25rem .35rem;text-align:center}
+.fac{display:flex;gap:.9rem;align-items:flex-start;min-width:0}
+.fac .ic-b{flex:none;display:grid;place-items:center;width:3rem;height:3rem;background:var(--sun);color:var(--ink);border-radius:50% 44% 52% 46%/46% 52% 44% 50%}
+
+/* lokasi */
+.mampir{font-family:var(--f-kn);font-size:clamp(2.2rem,5vw,3.2rem);line-height:.95;background:var(--sun);color:var(--ink);padding:22px 30px 26px;transform:rotate(-6deg);border:3px solid var(--ink);border-radius:50% 44% 52% 46%/46% 52% 44% 50%;text-align:center;box-shadow:6px 7px 0 var(--ink)}
+
+.live{display:inline-flex;align-items:center;gap:.45rem;border:2px solid var(--ink);background:#ECFCCB;color:#365314;border-radius:999px;padding:.2rem .7rem;font-size:.75rem;font-weight:800}
+.live-dot{display:inline-block;width:.55rem;height:.55rem;border-radius:999px;background:#65A30D;animation:ping-dot 1.8s infinite}
+@keyframes ping-dot{0%{box-shadow:0 0 0 0 rgba(101,163,13,.6)}70%{box-shadow:0 0 0 .5rem rgba(101,163,13,0)}100%{box-shadow:0 0 0 0 rgba(101,163,13,0)}}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .marquee-track{width:auto;flex-wrap:wrap;justify-content:center}
+  .marquee-track>div[aria-hidden]{display:none}
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="s-plus" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></symbol>
+  <symbol id="s-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="s-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="s-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
+</defs></svg>
+
+<div id="top" x-data>
+
+<!-- ============ NAVBAR ============ -->
+<header class="sticky z-40 border-b-[2.5px] border-ink bg-cream/95 backdrop-blur" style="top:env(safe-area-inset-top,0px)" x-data="{menu:false}" @keydown.escape.window="menu=false">
+  <div class="gutter mx-auto flex max-w-6xl items-center gap-3 py-1.5">
+    <a href="#top" class="shrink-0" aria-label="Warkop D'PAN, kembali ke atas"><img src="__LOGO__" alt="Logo Warkop D'PAN" class="h-12 w-auto sm:h-14"></a>
+    <div x-data="{i:0, labels:['Buka 24 Jam','Ramai Lancar']}" x-init="if(!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(()=>{i=(i+1)%2},4200)" class="live" role="status">
+      <span class="live-dot" aria-hidden="true"></span><span class="inline-block min-w-[5.2rem]" x-text="labels[i]">Buka 24 Jam</span>
+    </div>
+    <nav class="mx-auto hidden items-center gap-6 text-sm font-bold lg:flex" aria-label="Navigasi utama">
+      <a class="border-b-[3px] border-transparent py-1 hover:border-amber-500" href="#menu">Menu</a>
+      <a class="border-b-[3px] border-transparent py-1 hover:border-amber-500" href="#racik">Racik Mie</a>
+      <a class="border-b-[3px] border-transparent py-1 hover:border-amber-500" href="#nobar">Schedule Nobar</a>
+      <a class="border-b-[3px] border-transparent py-1 hover:border-amber-500" href="#promo">Promo</a>
+      <a class="border-b-[3px] border-transparent py-1 hover:border-amber-500" href="#lokasi">Lokasi</a>
+    </nav>
+    <div class="ml-auto hidden items-center gap-3 lg:flex">
+      <a href="#" data-wa="Halo Warkop D'PAN, mau order dong." target="_blank" rel="noopener" class="btn btn-sun btn-sm">Order WA</a>
+    </div>
+    <button type="button" class="btn btn-white ml-auto !h-11 !w-11 !p-0 lg:!hidden" @click="menu=!menu" :aria-expanded="menu" aria-controls="menu-mobile" aria-label="Buka atau tutup menu">
+      <i data-lucide="menu" class="h-5 w-5" x-show="!menu"></i>
+      <i data-lucide="x" class="h-5 w-5" x-show="menu" x-cloak></i>
+    </button>
+  </div>
+  <div id="menu-mobile" x-show="menu" x-cloak @click="menu=false" class="border-t-[2.5px] border-ink bg-cream lg:hidden">
+    <div class="gutter mx-auto flex max-w-6xl flex-col gap-1 py-3 font-bold">
+      <a class="rounded-xl px-3 py-3 hover:bg-sun" href="#menu">Menu</a>
+      <a class="rounded-xl px-3 py-3 hover:bg-sun" href="#racik">Racik Mie</a>
+      <a class="rounded-xl px-3 py-3 hover:bg-sun" href="#nobar">Schedule Nobar</a>
+      <a class="rounded-xl px-3 py-3 hover:bg-sun" href="#promo">Promo</a>
+      <a class="rounded-xl px-3 py-3 hover:bg-sun" href="#lokasi">Lokasi</a>
+      <div class="mt-2 grid grid-cols-2 gap-3 pb-1">
+        <a href="#" data-wa="Halo Warkop D'PAN, mau order dong." target="_blank" rel="noopener" class="btn btn-sun btn-sm">Order WA</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ============ HERO ============ -->
+<section class="hero-wrap halftone">
+  <div class="gutter mx-auto max-w-5xl py-8 lg:py-12">
+    <div class="hero relative isolate overflow-hidden">
+      <video class="hero-vid" autoplay muted loop playsinline preload="auto" poster="__POSTER__" aria-hidden="true"><source src="__VIDEO__" type="video/mp4"></video>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-body relative z-10 min-w-0">
+        <p class="tag-hand inline-block -rotate-2 rounded-xl border-[2.5px] border-ink bg-white px-4 py-1.5">Satu Mangkuk Seribu Cerita di Bekasi</p>
+        <h1 class="mt-4">Lagi Ngidam <span class="mark">Indomie Level</span> <span class="amp">&amp;</span> <span class="pill-dark">Es Cokelat Pekat?</span></h1>
+        <p class="hero-sub mt-5 max-w-xl text-base font-semibold sm:text-lg">Tempat nongkrong 24 jam paling pas di Bekasi. Wi-Fi 100 Mbps, Free Refill Es Teh, Full Stopkontak, &amp; Layar Nobar!</p>
+        <div class="mt-6 flex flex-col gap-4 sm:flex-row">
+          <button type="button" class="btn btn-sun" @click="$store.voucher.show()">🎁 Klaim Voucher Gratis Es Teh</button>
+        </div>
+        <ul class="mt-6 flex flex-wrap gap-2.5" aria-label="Keunggulan Warkop D'PAN">
+          <li class="chip"><i data-lucide="cup-soda"></i>Free Refill Es Teh</li>
+          <li class="chip"><i data-lucide="cookie"></i>Free Kerupuk</li>
+          <li class="chip"><i data-lucide="plug"></i>Full Stopkontak</li>
+          <li class="chip"><i data-lucide="wifi"></i>Wi-Fi Kencang</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="halftone relative overflow-hidden border-t-[3px] border-ink bg-cream2/40">
+  <div class="gutter mx-auto max-w-3xl py-14 lg:py-20">
+    <div class="relative min-w-0 pb-6">
+      <figure class="frame m-0">
+        <img src="__IMG_HERO__" alt="Tampak depan Warkop D'PAN malam hari, dua lantai dengan papan nama menyala">
+      </figure>
+      <div class="cap b">Kopi, Mie,<br>Teman Cerita</div>
+      <div class="cap a">Nongkrong, Makan, Ngopi,<br>Gak Harus Mahal!</div>
+      <div class="absolute -right-2 -top-8 h-28 w-28 sm:-right-6 sm:h-32 sm:w-32" aria-hidden="true">
+        <svg viewBox="0 0 120 120" class="spin absolute inset-0 h-full w-full">
+          <defs><path id="circ" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
+          <circle cx="60" cy="60" r="58" fill="#FFC629" stroke="#0F172A" stroke-width="3"/>
+          <text font-family="'Plus Jakarta Sans',sans-serif" font-weight="800" font-size="10.5" fill="#0F172A"><textPath href="#circ" textLength="278" lengthAdjust="spacing">BUKA 24 JAM • BEKASI • NONGKRONG • </textPath></text>
+        </svg>
+        <div class="absolute inset-0 grid place-items-center text-center font-kn leading-none text-ink"><span><span class="block text-4xl">24</span><span class="block text-sm">JAM</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <div><span>Perut Kenyang, Gak Bikin Kantong Goyang</span><i></i><span>Indomie Level 0 sampai 5</span><i></i><span>Es Cokelat Pekat</span><i></i><span>Nobar Bola</span><i></i><span>Mabar Bareng</span><i></i><span>Buka 24 Jam</span><i></i></div>
+    <div aria-hidden="true"><span>Perut Kenyang, Gak Bikin Kantong Goyang</span><i></i><span>Indomie Level 0 sampai 5</span><i></i><span>Es Cokelat Pekat</span><i></i><span>Nobar Bola</span><i></i><span>Mabar Bareng</span><i></i><span>Buka 24 Jam</span><i></i></div>
+  </div>
+</div>
+
+<!-- ============ PAPAN MENU ============ -->
+<section id="menu" class="scroll-mt-20 py-16 sm:py-24">
+  <div class="gutter mx-auto max-w-6xl">
+    <div class="flex flex-wrap items-end justify-between gap-5">
+      <div>
+        <h2 class="judul">Menu Favorit</h2>
+        <p class="lead mt-5">Disalin langsung dari papan menu di atas kasir. Harga terbaru dan menu lengkapnya selalu ada di sana.</p>
+      </div>
+      <a href="#racik" class="btn btn-sun">Racik Indomie-mu<i data-lucide="arrow-down" class="h-4 w-4"></i></a>
+    </div>
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:gap-8">
+      <article class="board lg:-rotate-1">
+        <h3>Noods Menu</h3><p class="sub">Mie yang bikin balik lagi.</p>
+        <ul>
+          <li><span>Mie Nyemek</span><span class="price">16K</span></li>
+          <li><span>Seblak Prasmanan<small>Pilih sendiri isiannya.</small></span><span class="price">mulai 2K</span></li>
+        </ul>
+      </article>
+      <article class="board lg:rotate-1">
+        <h3>Nice Picks</h3><p class="sub">Buat yang butuh nasi.</p>
+        <ul>
+          <li><span>Nasi Sop Jendes<small>Sop iga dengan tingkat kepedasan yang bisa diatur.</small></span><span class="price">38K</span></li>
+          <li><span>Nasi Telur D'PAN<small>Nasi telur ceplok dengan bumbu khas Pontianak.</small></span><span class="price">15K</span></li>
+        </ul>
+      </article>
+      <article class="board lg:rotate-1">
+        <h3>Snack Ideas</h3><p class="sub">Cemilan buat nongkrong lama.</p>
+        <ul>
+          <li><span>Pisang Crispy</span><span class="price">10K</span></li>
+          <li><span>Tempe Crispy</span><span class="price">10K</span></li>
+          <li><span>Tahu Isi</span><span class="price">10K</span></li>
+          <li><span>Ketan Susu</span><span class="price">6K</span></li>
+          <li><span>Ketan Serundeng</span><span class="price">13K</span></li>
+        </ul>
+      </article>
+      <article class="board lg:-rotate-1">
+        <h3>Good Taste</h3><p class="sub">Yang dingin-dingin.</p>
+        <ul>
+          <li><span>Es Teh Tarik</span><span class="price">9K</span></li>
+          <li><span>Es Nutrisari</span><span class="price">6K</span></li>
+          <li><span>Es Soda Gembira</span><span class="price">12K</span></li>
+          <li><span>Es Milo</span><span class="price">8K</span></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RACIK INDOMIE ============ -->
+<section id="racik" class="band-sun scroll-mt-20 py-16 sm:py-24" x-data="builder()">
+  <div class="gutter mx-auto max-w-6xl">
+    <div class="max-w-2xl">
+      <h2 class="judul">Racik Indomie-mu</h2>
+      <p class="mt-5 text-base font-semibold sm:text-lg">Pilih mie, atur level pedas, tambah topping. Mangkuknya ikut berubah, harganya langsung kelihatan.</p>
+    </div>
+
+    <div class="mt-10 grid gap-8 lg:grid-cols-[.95fr_1.05fr] lg:items-start">
+      <!-- Mangkuk -->
+      <div class="card-dark min-w-0 p-5 sm:p-7 lg:sticky lg:top-24">
+        <svg viewBox="0 0 340 270" class="mx-auto block w-full max-w-md" role="img" :aria-label="'Ilustrasi ' + mieObj.name + ' level ' + level">
+          <g class="steam" fill="none" stroke="#FFF6DE" stroke-width="6" stroke-linecap="round"><path d="M120 66c-14-14 14-22 0-40"/><path d="M170 58c-14-14 14-22 0-40"/><path d="M220 66c-14-14 14-22 0-40"/></g>
+          <path d="M26 124h288c0 82-54 134-144 134S26 206 26 124Z" fill="#FFC629" stroke="#0F172A" stroke-width="6" stroke-linejoin="round"/>
+          <path d="M46 176h248" stroke="#0F172A" stroke-width="5" stroke-dasharray="1 13" stroke-linecap="round"/>
+          <path d="M126 258h88" stroke="#0F172A" stroke-width="8" stroke-linecap="round"/>
+          <ellipse cx="170" cy="124" rx="144" ry="36" :fill="mieObj.surf" stroke="#0F172A" stroke-width="6"/>
+          <g fill="none" :stroke="mieObj.noodle" stroke-width="6" stroke-linecap="round">
+            <path d="M64 122c22-22 40 14 62-4s40 14 62-2 40 12 60-6 28 4 36-2"/><path d="M80 140c20-14 36 10 56 0s36 10 56-2 34 8 52-4"/><path d="M98 108c18-10 32 8 50 0s30 8 48 0 24 6 36 0"/>
+          </g>
+          <g x-show="has('telur')" x-transition.opacity><ellipse cx="122" cy="120" rx="36" ry="19" fill="#FFFDF6" stroke="#0F172A" stroke-width="3.5"/><circle cx="122" cy="118" r="10" fill="#FFC629" stroke="#0F172A" stroke-width="2.5"/></g>
+          <g x-show="has('keju')" x-transition.opacity><path d="M188 104l44 4-6 24-42-4Z" fill="#FFD84D" stroke="#0F172A" stroke-width="3.5" stroke-linejoin="round"/><path d="M196 132v8M214 134v12" stroke="#FFD84D" stroke-width="6" stroke-linecap="round"/></g>
+          <g x-show="has('kornet')" x-transition.opacity><rect x="236" y="116" width="28" height="18" rx="4" fill="#B4503A" stroke="#0F172A" stroke-width="3.5" transform="rotate(-8 250 125)"/><rect x="262" y="130" width="24" height="16" rx="4" fill="#C0624A" stroke="#0F172A" stroke-width="3.5" transform="rotate(10 274 138)"/></g>
+          <g x-show="has('bakso')" x-transition.opacity><circle cx="82" cy="136" r="12" fill="#E7D9BE" stroke="#0F172A" stroke-width="3.5"/><circle cx="150" cy="146" r="11" fill="#E7D9BE" stroke="#0F172A" stroke-width="3.5"/></g>
+          <g x-show="has('kol')" x-transition.opacity><path d="M160 98c12-14 30-10 32 4-12 10-26 10-32-4Z" fill="#6AA84F" stroke="#0F172A" stroke-width="3.5" stroke-linejoin="round"/></g>
+          <g x-show="has('matah')" x-transition.opacity><circle cx="206" cy="146" r="4.5" fill="#E11D48"/><circle cx="216" cy="150" r="4" fill="#F97316"/><circle cx="198" cy="152" r="3.5" fill="#84CC16"/><circle cx="224" cy="142" r="3.5" fill="#E11D48"/></g>
+        </svg>
+        <div class="mt-4 flex items-center justify-between gap-4">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-300">Level pedas</p>
+            <div class="mt-1 flex items-center gap-1" aria-hidden="true">
+              <template x-for="n in [1,2,3,4,5]" :key="n"><svg class="ic h-6 w-6" :class="n<=level ? 'text-sun' : 'text-slate-600'" :style="n<=level ? 'fill:#F97316' : ''"><use href="#s-flame"/></svg></template>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-300">Total</p>
+            <p class="led text-3xl leading-none" x-text="fmt(total)" aria-live="polite"></p>
+          </div>
+        </div>
+        <ul class="mt-4 space-y-1 border-t-2 border-dashed border-white/25 pt-4 text-sm" aria-label="Ringkasan pesanan">
+          <li class="flex justify-between gap-3"><span x-text="mieObj.name + ' · Level ' + level"></span><span class="font-mono" x-text="fmt(13000)"></span></li>
+          <template x-for="t in topObjs" :key="t.id"><li class="flex justify-between gap-3 text-slate-300"><span x-text="'+ ' + t.name"></span><span class="font-mono" x-text="fmt(t.price)"></span></li></template>
+          <template x-for="a in addObjs" :key="a.id"><li class="flex justify-between gap-3"><span x-text="a.name"></span><span class="font-mono" x-text="fmt(a.price)"></span></li></template>
+        </ul>
+        <p class="mt-3 text-center text-xs text-slate-300">Jumlah porsi bisa diatur di chat. Harga final dikonfirmasi kasir.</p>
+      </div>
+
+      <!-- Pilihan -->
+      <div class="card min-w-0 space-y-7 p-5 sm:p-7">
+        <div>
+          <h3 class="row-h"><span class="step-no">1</span>Varian Mie <span class="ml-auto rounded-full border-2 border-ink bg-sun px-2.5 py-0.5 font-sans text-xs font-extrabold">Semua Rp 13.000</span></h3>
+          <div class="mt-3 grid grid-cols-2 gap-3" role="radiogroup" aria-label="Varian mie">
+            <template x-for="m in mies" :key="m.id">
+              <label class="opt"><input type="radio" name="mie" class="sr-only" :value="m.id" x-model="mie"><span x-text="m.name"></span></label>
+            </template>
+          </div>
+        </div>
+        <div>
+          <h3 class="row-h"><span class="step-no">2</span>Level Pedas <span class="ml-auto rounded-full border-2 border-ink bg-[#ECFCCB] px-2.5 py-0.5 font-sans text-xs font-extrabold">Bebas biaya</span></h3>
+          <div class="mt-3 grid grid-cols-6 gap-2" role="radiogroup" aria-label="Level pedas">
+            <template x-for="n in [0,1,2,3,4,5]" :key="n">
+              <label class="opt lvl text-center"><input type="radio" name="level" class="sr-only" :value="n" x-model.number="level"><span class="font-mono text-base" x-text="n"></span></label>
+            </template>
+          </div>
+          <p class="mt-3 text-sm font-semibold" aria-live="polite"><span x-text="'Level ' + level + '. '"></span><span class="font-medium text-[#5F5642]" x-text="levelNotes[level]"></span></p>
+        </div>
+        <div>
+          <h3 class="row-h"><span class="step-no">3</span>Topping Tambahan</h3>
+          <div class="mt-3 grid grid-cols-2 gap-3">
+            <template x-for="t in toppings" :key="t.id">
+              <label class="opt"><input type="checkbox" class="sr-only" :value="t.id" x-model="tops"><span x-text="t.name"></span><small x-text="'+' + fmt(t.price)"></small></label>
+            </template>
+          </div>
+        </div>
+        <div>
+          <h3 class="row-h"><span class="step-no">4</span>Minuman &amp; Cemilan</h3>
+          <div class="mt-3 grid grid-cols-2 gap-3">
+            <template x-for="a in adds" :key="a.id">
+              <label class="opt"><input type="checkbox" class="sr-only" :value="a.id" x-model="addIds"><span x-text="a.name"></span><small x-text="fmt(a.price)"></small></label>
+            </template>
+          </div>
+        </div>
+        <div class="sticky z-20 flex items-center justify-between gap-3 rounded-2xl border-[2.5px] border-ink bg-sun px-4 py-3 shadow-[4px_5px_0_#0F172A] lg:hidden" style="bottom:calc(1rem + env(safe-area-inset-bottom,0px));margin-right:4.25rem">
+          <div class="min-w-0"><p class="text-[11px] font-bold uppercase tracking-wider">Total</p><p class="font-mono text-lg font-bold" x-text="fmt(total)"></p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NOBAR & EVENT ============ -->
+<section id="nobar" class="dark-band scroll-mt-20 py-16 sm:py-24" x-data="nobar()">
+  <div class="gutter mx-auto max-w-6xl">
+    <div class="max-w-2xl">
+      <h2 class="judul judul-dark">Jadwal Nobar &amp; Event</h2>
+      <p class="lead mt-6">Liga Inggris, Champions, Timnas, sampai mini turnamen e-sports. Teriaknya bareng-bareng.</p>
+    </div>
+
+    <div class="mt-10">
+      <div class="grid min-w-0 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <template x-for="ev in events" :key="ev.id">
+          <article class="slate-card flex min-w-0 flex-col p-5">
+            <div class="flex items-center justify-between gap-2">
+              <span class="rounded-md bg-sun px-2 py-1 font-mono text-[11px] font-bold uppercase tracking-wider text-ink" x-text="ev.tag"></span>
+            </div>
+            <h3 class="mt-3 font-kn text-xl leading-snug" x-text="ev.title"></h3>
+            <p class="mt-1 text-sm font-bold text-sun" x-text="ev.when"></p>
+            <p class="mt-1 flex-1 text-sm text-slate-300" x-text="ev.desc"></p>
+          </article>
+        </template>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROMO / D'PAN PASS ============ -->
+<section id="promo" class="halftone scroll-mt-20 overflow-hidden border-b-[3px] border-ink py-16 sm:py-24" x-data="{qr:''}" x-init="qr = makeQR('WARKOPDPAN-CONTOH')">
+  <div class="gutter mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2">
+    <div class="min-w-0">
+      <h2 class="judul">D'PAN Pass</h2>
+      <p class="mt-6 font-kn text-2xl leading-tight sm:text-3xl">Baru pertama mampir? Ada hadiahnya.</p>
+      <p class="lead mt-3">Pilih satu: diskon 20% atau gratis Es Teh. Kodenya langsung jadi di layar, tanpa download aplikasi.</p>
+      <ol class="mt-7 space-y-4 font-medium">
+        <li class="flex items-start gap-4"><span class="step-no mt-0.5">1</span><span><b>Isi nama dan nomor HP.</b> Cuma semenit.</span></li>
+        <li class="flex items-start gap-4"><span class="step-no mt-0.5">2</span><span><b>Pilih hadiahmu.</b> Diskon 20% atau gratis Es Teh.</span></li>
+        <li class="flex items-start gap-4"><span class="step-no mt-0.5">3</span><span><b>Screenshot, tunjukkan ke kasir.</b> Kode QR-nya dipindai saat bayar.</span></li>
+      </ol>
+      <button type="button" class="btn btn-sun mt-8" @click="$store.voucher.show()">🎁 Klaim Voucher Gratis Es Teh</button>
+    </div>
+    <div class="relative mx-auto w-full max-w-sm min-w-0" aria-hidden="true">
+      <div class="absolute -inset-2 rotate-3 rounded-[2rem] bg-sun" style="border:3px solid var(--ink)"></div>
+      <div class="ticket relative -rotate-2 shadow-[7px_8px_0_#0F172A]" style="--band:3.4rem">
+        <div class="flex h-[3.4rem] items-center justify-between border-b-[3px] border-ink bg-sun px-5">
+          <span class="font-kn text-xl">D'PAN PASS</span>
+          <span class="rounded-full bg-ink px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-widest text-sun">Contoh</span>
+        </div>
+        <span class="notch l bg-cream"></span><span class="notch r bg-cream"></span>
+        <div class="px-5 pb-5 pt-6">
+          <p class="text-[11px] font-bold uppercase tracking-widest opacity-60">Hadiah kunjungan pertama</p>
+          <p class="font-kn text-3xl leading-tight">Gratis Es Teh</p>
+          <div class="mt-4 flex items-center gap-4 border-t-2 border-dashed border-ink/30 pt-4">
+            <div class="h-28 w-28 shrink-0 overflow-hidden rounded-lg border-2 border-ink" x-html="qr"></div>
+            <div class="min-w-0 font-mono text-xs"><p class="opacity-60">KODE</p><p class="text-base font-bold">DPAN-XXXX-XXXX</p><p class="mt-2 opacity-60">ATAS NAMA</p><p class="font-bold">Nama kamu</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SUASANA & FASILITAS ============ -->
+<section id="fasilitas" class="dark-band scroll-mt-20 py-16 sm:py-24">
+  <div class="gutter mx-auto max-w-6xl">
+    <div class="max-w-2xl">
+      <h2 class="judul judul-dark">Suasana di Warkop D'PAN</h2>
+      <p class="lead mt-6">Tempat sederhana untuk cerita yang luar biasa. Dari lembur sampai nobar, semua kebutuhan nongkrongnya sudah disiapkan.</p>
+    </div>
+    <div class="mt-12 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+      <figure class="polaroid m-0" style="--r:-3deg"><img src="__IMG_ATAS__" alt="Pengunjung nongkrong dan main kartu di area duduk lantai atas"><figcaption>Lantai atas, tempat nongkrong</figcaption></figure>
+      <figure class="polaroid m-0 lg:mt-6" style="--r:2.5deg"><img src="__IMG_KASIR__" alt="Pelanggan memesan di meja kasir dengan papan menu digital di atasnya"><figcaption>Pesan langsung di kasir</figcaption></figure>
+      <figure class="polaroid m-0" style="--r:2deg"><img src="__IMG_DAPUR__" alt="Dapur kecil dengan rak Indomie dan minuman saset di belakang meja kasir"><figcaption>Stok Indomie penuh</figcaption></figure>
+      <figure class="polaroid m-0 lg:mt-6" style="--r:-2.5deg"><img src="__IMG_KERUPUK__" alt="Toples kerupuk dan jajanan di meja kasir"><figcaption>Toples jajanan dan kerupuk</figcaption></figure>
+    </div>
+    <ul class="mt-14 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+      <li class="fac"><span class="ic-b"><i data-lucide="wifi" class="h-6 w-6"></i></span><div><h3 class="font-kn text-lg">Wi-Fi Kencang</h3><p class="mt-1 text-sm text-slate-300">100 Mbps. Aman buat zoom, upload tugas, atau push rank.</p></div></li>
+      <li class="fac"><span class="ic-b"><i data-lucide="plug" class="h-6 w-6"></i></span><div><h3 class="font-kn text-lg">Colokan di Setiap Meja</h3><p class="mt-1 text-sm text-slate-300">Laptop dan HP tetap hidup. Tinggal colok.</p></div></li>
+      <li class="fac"><span class="ic-b"><i data-lucide="snowflake" class="h-6 w-6"></i></span><div><h3 class="font-kn text-lg">Indoor AC &amp; Outdoor Smoker</h3><p class="mt-1 text-sm text-slate-300">Mau adem atau mau ngebul, dua-duanya ada.</p></div></li>
+      <li class="fac"><span class="ic-b"><i data-lucide="cup-soda" class="h-6 w-6"></i></span><div><h3 class="font-kn text-lg">Free Refill Kerupuk &amp; Es Teh</h3><p class="mt-1 text-sm text-slate-300">Es teh habis? Isi lagi. Kerupuk juga.</p></div></li>
+      <li class="fac"><span class="ic-b"><i data-lucide="projector" class="h-6 w-6"></i></span><div><h3 class="font-kn text-lg">Layar Proyektor Besar</h3><p class="mt-1 text-sm text-slate-300">Buat nobar bola dan nonton turnamen rame-rame.</p></div></li>
+      <li class="fac"><span class="ic-b"><i data-lucide="moon" class="h-6 w-6"></i></span><div><h3 class="font-kn text-lg">Buka 24 Jam</h3><p class="mt-1 text-sm text-slate-300">Lembur, shift malam, atau laper jam 3 pagi, aman.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ LOKASI & JAM ============ -->
+<section id="lokasi" class="halftone scroll-mt-20 py-16 sm:py-24" x-data="lokasi()">
+  <div class="gutter mx-auto max-w-6xl">
+    <h2 class="judul">Mampir ke D'PAN</h2>
+    <div class="mt-10 grid gap-8 lg:grid-cols-[1.25fr_1fr] lg:items-stretch">
+      <!-- Placeholder peta: ganti dengan iframe Google Maps embed saat dipasang di hosting sendiri -->
+      <div class="card relative min-h-[19rem] overflow-hidden">
+        <svg viewBox="0 0 600 360" class="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="600" height="360" fill="#FFEBB8"/>
+          <g stroke="#FFF6DE" stroke-width="16" stroke-linecap="round" fill="none"><path d="M-10 250 L220 210 L420 230 L620 150"/><path d="M180 -10 L230 380"/><path d="M420 -10 L400 380"/><path d="M-10 90 L620 60"/></g>
+          <g stroke="#0F172A" stroke-opacity=".35" stroke-width="3" fill="none" stroke-dasharray="10 12"><path d="M-10 250 L220 210 L420 230 L620 150"/><path d="M-10 90 L620 60"/></g>
+          <g fill="#0F172A" opacity=".12"><rect x="250" y="100" width="70" height="50" rx="6"/><rect x="440" y="90" width="90" height="60" rx="6"/><rect x="40" y="130" width="100" height="50" rx="6"/><rect x="250" y="260" width="110" height="60" rx="6"/><rect x="450" y="260" width="100" height="70" rx="6"/></g>
+          <circle cx="300" cy="205" r="42" fill="#FFC629" opacity=".55"/>
+        </svg>
+        <div class="absolute left-1/2 top-[54%] -translate-x-1/2 -translate-y-full text-ink"><i data-lucide="map-pin" class="h-14 w-14" style="fill:#FFC629"></i></div>
+        <div class="absolute inset-x-4 bottom-4 flex flex-col gap-3 rounded-2xl border-[2.5px] border-ink bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
+          <div class="min-w-0"><p class="font-bold">Warkop D'PAN</p><p class="text-sm text-[#5F5642]" x-text="alamat"></p></div>
+          <a :href="mapsUrl" target="_blank" rel="noopener" class="btn btn-sun btn-sm shrink-0">Buka Google Maps<i data-lucide="arrow-up-right" class="h-4 w-4"></i></a>
+        </div>
+      </div>
+      <div class="relative min-w-0">
+        <div class="card p-6">
+          <div class="flex items-center gap-3"><span class="ic-b grid h-11 w-11 place-items-center rounded-full border-[2.5px] border-ink bg-sun"><i data-lucide="clock" class="h-5 w-5"></i></span><h3 class="font-hand text-3xl leading-none">Jam Buka</h3></div>
+          <p class="mt-5 font-kn text-6xl leading-none">24 JAM</p>
+          <p class="mt-2 text-sm font-medium">Setiap hari, tanpa libur. Hari ini (<b x-text="namaHari[today]"></b>) kami buka.</p>
+          <ul class="mt-5 grid grid-cols-7 gap-1.5" aria-label="Hari buka">
+            <template x-for="(h,i) in hari" :key="h"><li class="rounded-lg border-2 border-ink py-1.5 text-center text-xs font-extrabold" :class="i===today ? 'bg-sun' : 'bg-white'" x-text="h"></li></template>
+          </ul>
+          <a href="#" data-wa="Halo Warkop D'PAN, mau tanya dulu ya." target="_blank" rel="noopener" class="btn btn-wa mt-6 w-full"><i data-lucide="message-circle" class="h-5 w-5"></i>Tanya via WhatsApp</a>
+        </div>
+        <div class="mampir absolute -right-2 -top-12 hidden scale-90 sm:block" aria-hidden="true">Yuk<br>Mampir!</div>
+      </div>
+    </div>
+    <div class="mampir mx-auto mt-10 w-fit sm:hidden" aria-hidden="true">Yuk<br>Mampir!</div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<!-- ============ KESERUAN / TIKTOK ============ -->
+<section id="keseruan" class="tt-sec scroll-mt-20 py-16 sm:py-24">
+  <div class="gutter mx-auto max-w-6xl">
+    <div class="text-center">
+      <span class="judul">Keseruan di Warkop D'Pan</span>
+      <p class="mx-auto mt-5 max-w-xl text-base font-medium text-slate-200 sm:text-lg">Intip suasana, racikan menu, dan serunya nongkrong bareng kami langsung dari TikTok.</p>
+    </div>
+
+    <div class="mx-auto mt-10 flex justify-center">
+      <div class="tt-profile">
+        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@warkop.dpan" data-unique-id="warkop.dpan" data-embed-type="creator" style="max-width: 780px; min-width: 288px;">
+          <section>
+            <a target="_blank" href="https://www.tiktok.com/@warkop.dpan?refer=creator_embed">@warkop.dpan</a>
+          </section>
+        </blockquote>
+        <script async src="https://www.tiktok.com/embed.js"></script>
+      </div>
+    </div>
+
+    <div class="mt-10 text-center">
+      <a href="https://www.tiktok.com/@warkop.dpan" target="_blank" rel="noopener" class="btn btn-sun">Lihat TikTok Kami</a>
+      <p class="mt-3 text-sm font-semibold text-slate-300">@warkop.dpan</p>
+    </div>
+  </div>
+</section>
+
+<footer class="dark-band border-t-[3px] border-ink pb-24 pt-12">
+  <div class="gutter mx-auto flex max-w-6xl flex-col gap-8 md:flex-row md:items-start md:justify-between">
+    <div class="flex max-w-sm items-center gap-4">
+      <img src="__LOGO__" alt="Logo Warkop D'PAN" class="h-20 w-auto">
+      <div>
+        <p class="font-hand text-2xl leading-tight text-sun">Perut Kenyang,<br>Gak Bikin Kantong Goyang</p>
+        <p class="mt-1 text-xs text-slate-400">Satu Mangkuk Seribu Cerita di Bekasi.</p>
+      </div>
+    </div>
+    <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm font-bold" aria-label="Navigasi footer">
+      <a class="hover:text-sun" href="#menu">Menu</a><a class="hover:text-sun" href="#racik">Racik Mie</a><a class="hover:text-sun" href="#nobar">Schedule Nobar</a><a class="hover:text-sun" href="#promo">Promo</a><a class="hover:text-sun" href="#lokasi">Lokasi</a>
+    </nav>
+    <div class="flex gap-3">
+      <a data-social="instagram" href="https://www.instagram.com/warkopdpan/" target="_blank" rel="noopener" aria-label="Instagram Warkop D'PAN" class="grid h-11 w-11 place-items-center rounded-full border-2 border-white/25 hover:border-sun hover:text-sun"><i data-lucide="instagram" class="h-5 w-5"></i></a>
+      <a data-social="tiktok" href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok Warkop D'PAN" class="grid h-11 w-11 place-items-center rounded-full border-2 border-white/25 hover:border-sun hover:text-sun">
+        <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current" aria-hidden="true"><path d="M19.6 6.7a4.8 4.8 0 0 1-3.8-4.2h-3.4v13.3a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .8.1V9.5a6.4 6.4 0 1 0 5.5 6.3V9a8.1 8.1 0 0 0 3.8 1.2V6.8z"/></svg>
+      </a>
+    </div>
+  </div>
+  <p class="gutter mx-auto mt-10 max-w-6xl text-xs text-slate-400">© 2026 Warkop D'PAN, Bekasi.</p>
+</footer>
+
+<!-- FAB WhatsApp -->
+<a href="#" data-wa="Halo Warkop D'PAN, mau tanya dulu ya." target="_blank" rel="noopener" aria-label="Chat WhatsApp Warkop D'PAN" class="fixed z-30 grid h-14 w-14 place-items-center rounded-full border-[2.5px] border-ink bg-[#4ADE80] text-ink shadow-[3px_4px_0_#0F172A] transition hover:scale-105" style="right:max(1rem,calc(env(safe-area-inset-right,0px) + 1rem));bottom:calc(1rem + env(safe-area-inset-bottom,0px))"><i data-lucide="message-circle" class="h-7 w-7"></i></a>
+
+<!-- ============ MODAL VOUCHER ============ -->
+<div x-show="$store.voucher.open" x-cloak x-transition.opacity.duration.150ms class="modal fixed inset-0 z-50 flex items-end justify-center bg-ink/80 backdrop-blur-sm sm:items-center" style="padding:0 env(safe-area-inset-right,0px) 0 env(safe-area-inset-left,0px)" @click.self="$store.voucher.hide()" @keydown.escape.window="$store.voucher.hide()">
+  <div role="dialog" aria-modal="true" aria-labelledby="v-title" class="max-h-[92dvh] w-full max-w-md overflow-y-auto rounded-t-3xl border-[3px] border-sun bg-slate p-5 text-white shadow-2xl sm:m-6 sm:rounded-3xl sm:p-6" style="padding-bottom:calc(1.25rem + env(safe-area-inset-bottom,0px));background:var(--slate)">
+    <div class="flex items-start justify-between gap-3">
+      <div>
+        <p class="font-hand text-xl text-sun">D'PAN Pass</p>
+        <h2 id="v-title" class="font-kn text-2xl leading-tight" x-text="$store.voucher.view==='form' ? 'Klaim voucher kamu' : 'Voucher kamu siap'"></h2>
+      </div>
+      <button type="button" class="grid h-10 w-10 shrink-0 place-items-center rounded-full border-2 border-white/25 hover:border-sun" @click="$store.voucher.hide()" aria-label="Tutup"><i data-lucide="x" class="h-5 w-5"></i></button>
+    </div>
+
+    <form x-show="$store.voucher.view==='form'" @submit.prevent="$store.voucher.claim()" class="mt-5 space-y-4" novalidate>
+      <div>
+        <label for="v-nama" class="text-sm font-bold">Nama</label>
+        <input id="v-nama" type="text" class="field mt-1.5" placeholder="Nama kamu" autocomplete="name" x-model="$store.voucher.nama">
+        <p class="mt-1 text-xs font-bold text-red-300" x-show="$store.voucher.err.nama" x-text="$store.voucher.err.nama" x-cloak></p>
+      </div>
+      <div>
+        <label for="v-hp" class="text-sm font-bold">No HP / WhatsApp</label>
+        <input id="v-hp" type="tel" inputmode="tel" class="field mt-1.5" placeholder="08123456789" autocomplete="tel" x-model="$store.voucher.hp">
+        <p class="mt-1 text-xs font-bold text-red-300" x-show="$store.voucher.err.hp" x-text="$store.voucher.err.hp" x-cloak></p>
+      </div>
+      <fieldset>
+        <legend class="text-sm font-bold">Pilih hadiah</legend>
+        <div class="mt-1.5 grid grid-cols-2 gap-2">
+          <label class="opt text-center !text-ink"><input type="radio" name="reward" class="sr-only" value="esteh" x-model="$store.voucher.reward">Gratis Es Teh<small>Kunjungan pertama</small></label>
+          <label class="opt text-center !text-ink"><input type="radio" name="reward" class="sr-only" value="diskon" x-model="$store.voucher.reward">Diskon 20%<small>Kunjungan pertama</small></label>
+        </div>
+      </fieldset>
+      <button type="submit" class="btn btn-sun w-full">Klaim Voucher</button>
+      <p class="text-xs text-slate-300">Nomor HP dipakai untuk konfirmasi lewat WhatsApp, tidak disimpan di halaman ini.</p>
+    </form>
+
+    <div x-show="$store.voucher.view==='ticket' && $store.voucher.v" x-cloak class="mt-5">
+      <div class="ticket" style="--band:3.4rem">
+        <div class="flex h-[3.4rem] items-center justify-between border-b-[3px] border-ink bg-sun px-5">
+          <span class="font-kn text-xl">D'PAN PASS</span>
+          <span class="font-mono text-[11px] font-bold uppercase tracking-widest">Warkop D'PAN</span>
+        </div>
+        <span class="notch l" style="background:var(--slate)"></span><span class="notch r" style="background:var(--slate)"></span>
+        <div class="px-5 pb-5 pt-6">
+          <p class="text-[11px] font-bold uppercase tracking-widest opacity-60">Hadiah kunjungan pertama</p>
+          <p class="font-kn text-3xl leading-tight" x-text="$store.voucher.rewardLabel"></p>
+          <div class="mt-4 flex items-center gap-4 border-t-2 border-dashed border-ink/30 pt-4">
+            <div class="h-28 w-28 shrink-0 overflow-hidden rounded-lg border-2 border-ink" x-html="$store.voucher.qr"></div>
+            <div class="min-w-0 font-mono text-xs">
+              <p class="opacity-60">KODE</p>
+              <p class="break-all text-base font-bold" x-text="$store.voucher.v && $store.voucher.v.code"></p>
+              <p class="mt-2 opacity-60">ATAS NAMA</p>
+              <p class="break-words font-bold" x-text="$store.voucher.v && $store.voucher.v.nama"></p>
+              <p class="mt-2 opacity-60" x-text="'Diklaim ' + ($store.voucher.v && $store.voucher.v.tanggal)"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="mt-4 text-sm text-slate-200">Screenshot layar ini dan tunjukkan ke kasir saat bayar.</p>
+      <div class="mt-4 grid gap-3">
+        <a :href="$store.voucher.waHref" target="_blank" rel="noopener" class="btn btn-wa w-full"><i data-lucide="message-circle" class="h-5 w-5"></i>Konfirmasi ke WA Warkop</a>
+        <button type="button" class="text-xs font-bold text-slate-300 underline-offset-4 hover:text-sun hover:underline" @click="$store.voucher.reset()">Klaim dengan data lain</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /#top -->
+
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+/* ====== GANTI DI SINI ======
+   wa        : nomor WhatsApp warkop, awali 62 tanpa + atau spasi. Contoh: "6281234567890"
+   mapsUrl   : link Google Maps warkop (kosong = buka pencarian "Warkop D'PAN Bekasi")
+   alamat    : alamat lengkap yang tampil di kartu peta
+   instagram / tiktok : link akun resmi
+   =========================== */
+const CONFIG = {
+  wa: "",
+  mapsUrl: "",
+  alamat: "Bekasi, Jawa Barat",
+  instagram: "https://www.instagram.com/warkopdpan/",
+  tiktok: "https://www.tiktok.com/@warkop.dpan"
+};
+
+const fmt = n => 'Rp ' + Number(n).toLocaleString('id-ID');
+const waUrl = text => 'https://wa.me/' + CONFIG.wa + '?text=' + encodeURIComponent(text);
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function makeQR(text){
+  try{
+    if(typeof qrcode !== 'function') return '';
+    const q = qrcode(0, 'M'); q.addData(text); q.make();
+    const n = q.getModuleCount(), m = 2; let d = '';
+    for(let r = 0; r < n; r++) for(let c = 0; c < n; c++) if(q.isDark(r, c)) d += 'M' + (c + m) + ' ' + (r + m) + 'h1v1h-1z';
+    const s = n + m * 2;
+    return '<svg viewBox="0 0 ' + s + ' ' + s + '" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" role="img" aria-label="Kode QR voucher" style="display:block;width:100%;height:100%"><rect width="' + s + '" height="' + s + '" fill="#fff"/><path d="' + d + '" fill="#0F172A"/></svg>';
+  }catch(e){ return ''; }
+}
+function makeCode(){
+  const abc = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ'; let s = '';
+  try{ const a = new Uint32Array(8); crypto.getRandomValues(a); a.forEach(v => s += abc[v % abc.length]); }
+  catch(e){ for(let i = 0; i < 8; i++) s += abc[Math.floor(Math.random() * abc.length)]; }
+  return 'DPAN-' + s.slice(0, 4) + '-' + s.slice(4);
+}
+
+document.addEventListener('alpine:init', () => {
+
+
+
+  /* ---------- Voucher (D'PAN Pass) ---------- */
+  Alpine.store('voucher', {
+    open: false, view: 'form', nama: '', hp: '', reward: 'esteh', err: {}, v: null, opener: null,
+    init(){ try{ const s = localStorage.getItem('dpan_voucher'); if(s) this.v = JSON.parse(s); }catch(e){} },
+    get rewardLabel(){ return this.v && this.v.reward === 'diskon' ? 'Diskon 20%' : 'Gratis Es Teh'; },
+    get qr(){ return this.v ? makeQR('WARKOPDPAN:' + this.v.code + ':' + this.v.reward) : ''; },
+    get waHref(){
+      if(!this.v) return '#';
+      return waUrl("Halo Warkop D'PAN, saya " + this.v.nama + " (" + this.v.hp + ") sudah klaim D'PAN Pass.\nKode: " + this.v.code + "\nHadiah: " + this.rewardLabel);
+    },
+    show(){
+      this.opener = document.activeElement; this.open = true;
+      this.view = this.v ? 'ticket' : 'form';
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => { const el = document.getElementById('v-nama'); if(this.view === 'form' && el) el.focus(); }, 80);
+    },
+    hide(){
+      if(!this.open) return;
+      this.open = false; document.body.style.overflow = '';
+      if(this.opener && this.opener.focus) this.opener.focus();
+    },
+    reset(){
+      this.v = null; this.nama = ''; this.hp = ''; this.err = {}; this.view = 'form';
+      try{ localStorage.removeItem('dpan_voucher'); }catch(e){}
+      setTimeout(() => { const el = document.getElementById('v-nama'); if(el) el.focus(); }, 50);
+    },
+    claim(){
+      const nama = this.nama.trim(), hp = this.hp.replace(/[\s\-().]/g, ''), e = {};
+      if(nama.length < 2) e.nama = 'Isi nama dulu ya, minimal 2 huruf.';
+      if(!/^(\+62|62|0)8\d{7,12}$/.test(hp)) e.hp = 'Nomor HP belum pas. Contoh: 08123456789.';
+      this.err = e;
+      if(Object.keys(e).length) return;
+      this.v = { code: makeCode(), nama, hp, reward: this.reward,
+        tanggal: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Jakarta' }) };
+      try{ localStorage.setItem('dpan_voucher', JSON.stringify(this.v)); }catch(x){}
+      this.view = 'ticket';
+    }
+  });
+
+  /* ---------- Racik Indomie ---------- */
+  Alpine.data('builder', () => ({
+    mies: [
+      { id: 'goreng', name: 'Indomie Goreng', surf: '#C97A1E', noodle: '#F3C77A' },
+      { id: 'soto', name: 'Indomie Soto Ayam', surf: '#F2C14E', noodle: '#FFF3C4' },
+      { id: 'kari', name: 'Indomie Kari Ayam', surf: '#E08A1E', noodle: '#FFE08A' },
+      { id: 'ayambawang', name: 'Indomie Ayam Bawang', surf: '#F4D98B', noodle: '#FFF8DC' }
+    ],
+    levelNotes: ['Aman, cuma gurih.', 'Sekadar anget di lidah.', 'Mulai berasa, masih santai.', 'Pedas yang pas buat kebanyakan orang.', 'Keringetan, siapin tisu.', 'Gas pol. Siapin Es Teh refill.'],
+    toppings: [
+      { id: 'telur', name: 'Telur Ceplok', price: 4000 },
+      { id: 'kornet', name: 'Kornet 100% Beef', price: 5000 },
+      { id: 'keju', name: 'Keju Lumer', price: 4000 },
+      { id: 'bakso', name: 'Bakso', price: 5000 },
+      { id: 'kol', name: 'Kol Goreng', price: 3000 },
+      { id: 'matah', name: 'Sambal Matah', price: 3000 }
+    ],
+    adds: [
+      { id: 'cokelat', name: 'Es Cokelat Pekat', price: 8000 },
+      { id: 'goodday', name: 'Es Goodday Freeze', price: 8000 },
+      { id: 'teh', name: 'Es Teh Refill', price: 5000 },
+      { id: 'maryam-katsu', name: 'Roti Maryam Katsu', price: 10000 },
+      { id: 'maryam-keju', name: 'Roti Maryam Keju', price: 10000 },
+      { id: 'pancong', name: 'Pancong Lumer', price: 12000 }
+    ],
+    mie: 'goreng', level: 3, tops: ['telur', 'keju'], addIds: ['cokelat'],
+    has(id){ return this.tops.includes(id); },
+    get mieObj(){ return this.mies.find(m => m.id === this.mie) || this.mies[0]; },
+    get topObjs(){ return this.toppings.filter(t => this.tops.includes(t.id)); },
+    get addObjs(){ return this.adds.filter(a => this.addIds.includes(a.id)); },
+    get total(){ return 13000 + this.topObjs.reduce((s, t) => s + t.price, 0) + this.addObjs.reduce((s, a) => s + a.price, 0); },
+    get waHref(){
+      const L = ["Halo Warkop D'PAN, mau pesan ya.", '', '*PESANAN*', '1x ' + this.mieObj.name + ' (Level ' + this.level + ')'];
+      this.topObjs.forEach(t => L.push('   + ' + t.name));
+      this.addObjs.forEach(a => L.push('1x ' + a.name));
+      L.push('', '*Total: ' + fmt(this.total) + '*');
+      return waUrl(L.join('\n'));
+    }
+  }));
+
+  /* ---------- Nobar (jadwal saja, free seating) ---------- */
+  Alpine.data('nobar', () => ({
+    /* CONTOH JADWAL: ganti judul dan jam sesuai jadwal warkop. */
+    events: [
+      { id: 'epl', tag: 'Liga Inggris', title: 'Match Day Premier League', when: 'Sabtu & Minggu malam', desc: 'Layar proyektor besar, suara full, rame sampai peluit akhir.', left: 5, cap: 20, unit: 'Meja' },
+      { id: 'ucl', tag: 'Champions', title: 'Champions League Night', when: 'Selasa & Rabu dini hari', desc: 'Warkop buka 24 jam, jadi kick-off dini hari tetap aman.', left: 8, cap: 20, unit: 'Meja' },
+      { id: 'timnas', tag: 'Timnas', title: 'Nobar Timnas Garuda', when: 'Setiap Timnas main', desc: 'Pakai jersey, bawa suara. Teriak bareng sampai serak.', left: 12, cap: 30, unit: 'Kursi' },
+      { id: 'esports', tag: 'E-Sports', title: 'Mini Tournament E-Sports', when: 'Jumat malam', desc: 'Mabar skala kecil, bawa timmu. Hadiah nongkrong gratis.', left: 3, cap: 8, unit: 'Slot Tim' }
+    ]
+  }));
+
+  /* ---------- Lokasi ---------- */
+  Alpine.data('lokasi', () => ({
+    alamat: CONFIG.alamat,
+    mapsUrl: CONFIG.mapsUrl || 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent("Warkop D'PAN Bekasi"),
+    hari: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
+    namaHari: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
+    today: (new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })).getDay() + 6) % 7
+  }));
+});
+
+document.querySelectorAll('[data-wa]').forEach(a => { a.href = waUrl(a.getAttribute('data-wa')); });
+document.querySelectorAll('[data-social]').forEach(a => { const u = CONFIG[a.getAttribute('data-social')]; if(u) a.href = u; });
+if(window.lucide) lucide.createIcons();
+
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="#"]');
+  if(!a) return;
+  const id = a.getAttribute('href').slice(1);
+  const el = id ? document.getElementById(id) : null;
+  if(!el) return;
+  e.preventDefault();
+  el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js" defer></script>
